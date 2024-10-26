@@ -1,0 +1,236 @@
+{
+    "languages": [
+        {
+            "name": "Agda",
+            "icon": "dada"
+        },
+        {
+            "name": "BF",
+            "icon": "dada"
+        },
+        {
+            "name": "C",
+            "icon": "dada"
+        },
+        {
+            "name": "DFML",
+            "icon": "dada"
+        },
+        {
+            "name": "Clojure",
+            "icon": "dada"
+        },
+        {
+            "name": "COBOL",
+            "icon": "dada"
+        },
+        {
+            "name": "CoffeeScript",
+            "icon": "dada"
+        },
+        {
+            "name": "CommonLisp",
+            "icon": "dada"
+        },
+        {
+            "name": "Coq",
+            "icon": "dada"
+        },
+        {
+            "name": "C++",
+            "icon": "dada"
+        },
+        {
+            "name": "Crystal",
+            "icon": "dada"
+        },
+        {
+            "name": "C#",
+            "icon": "dada"
+        },
+        {
+            "name": "D",
+            "icon": "dada"
+        },
+        {
+            "name": "Dart",
+            "icon": "dada"
+        },
+        {
+            "name": "Elexir",
+            "icon": "dada"
+        },
+        {
+            "name": "Elm",
+            "icon": "dada"
+        },
+        {
+            "name": "Erlang",
+            "icon": "dada"
+        },
+        {
+            "name": "Factor",
+            "icon": "dada"
+        },
+        {
+            "name": "Forth",
+            "icon": "dada"
+        },
+        {
+            "name": "Fortran",
+            "icon": "dada"
+        },
+        {
+            "name": "F#",
+            "icon": "dada"
+        },
+        {
+            "name": "Go",
+            "icon": "dada"
+        },
+        {
+            "name": "Groovy",
+            "icon": "dada"
+        },
+        {
+            "name": "Haskell",
+            "icon": "dada"
+        },
+        {
+            "name": "Haxe",
+            "icon": "dada"
+        },
+        {
+            "name": "Idris",
+            "icon": "dada"
+        },
+        {
+            "name": "Java",
+            "icon": "dada"
+        },
+        {
+            "name": "Javascript",
+            "icon": "dada"
+        },
+        {
+            "name": "Julia",
+            "icon": "dada"
+        },
+        {
+            "name": "Kotlin",
+            "icon": "dada"
+        },
+        {
+            "name": "ł Calculus",
+            "icon": "dada"
+        },
+        {
+            "name": "Lean",
+            "icon": "dada"
+        },
+        {
+            "name": "Lua",
+            "icon": "dada"
+        },
+        {
+            "name": "NASM",
+            "icon": "dada"
+        },
+        {
+            "name": "Nim",
+            "icon": "dada"
+        },
+        {
+            "name": "Objective-C",
+            "icon": "dada"
+        },
+        {
+            "name": "OCaml",
+            "icon": "dada"
+        },
+        {
+            "name": "Pascal",
+            "icon": "dada"
+        },
+        {
+            "name": "Perl",
+            "icon": "dada"
+        },
+        {
+            "name": "PHP",
+            "icon": "dada"
+        },
+        {
+            "name": "Powershell",
+            "icon": "dada"
+        },
+        {
+            "name": "Prolog",
+            "icon": "dada"
+        },
+        {
+            "name": "PureScript",
+            "icon": "dada"
+        },
+        {
+            "name": "Python",
+            "icon": "dada"
+        },
+        {
+            "name": "R",
+            "icon": "dada"
+        },
+        {
+            "name": "Racket",
+            "icon": "dada"
+        },
+        {
+            "name": "Raku",
+            "icon": "dada"
+        },
+        {
+            "name": "Reason",
+            "icon": "dada"
+        },
+        {
+            "name": "RISC-V",
+            "icon": "dada"
+        },
+        {
+            "name": "Ruby",
+            "icon": "dada"
+        },
+        {
+            "name": "Rust",
+            "icon": "dada"
+        },
+        {
+            "name": "Scala",
+            "icon": "dada"
+        },
+        {
+            "name": "Shell",
+            "icon": "dada"
+        },
+        {
+            "name": "Solidity",
+            "icon": "dada"
+        },
+        {
+            "name": "SQL",
+            "icon": "dada"
+        },
+        {
+            "name": "Swift",
+            "icon": "dada"
+        },
+        {
+            "name": "TypeScript",
+            "icon": "dada"
+        },
+        {
+            "name": "VB",
+            "icon": "dada"
+        }
+    ]
+}
