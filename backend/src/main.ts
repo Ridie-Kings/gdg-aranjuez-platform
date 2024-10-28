@@ -4,6 +4,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
+    app.enableCors();
+    //app.useGlobalGuards(new RolesGuard());
 
     const swaggerConfig = new DocumentBuilder()
         .setTitle('CodeCrypt')

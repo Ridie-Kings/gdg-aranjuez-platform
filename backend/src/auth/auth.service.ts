@@ -32,16 +32,6 @@ export class AuthService {
 
         return !(userByEmail || userByUsername);
     }
-    
-    async forgotPassword(email: string): Promise<ResponseDto> {
-        const user = await this.usersService.findOne({ where: { email } });
-
-        if (!user) {
-            return { success: false, data: { code: 404, message: 'User not found' } };
-        }
-
-        // Send email with a link to reset password
-    }
 
     async createUser(user: UserDto): Promise<ResponseDto> {
         const userExists = await this.checkUserExists(user.username, user.email);
@@ -64,8 +54,7 @@ export class AuthService {
     }
 
     async validateUser(email: string, password: string): Promise<UserEntity | null> {
-        const user = await this.usersService.findOne({ where: { email } }) as UserEntity;
-
+        const user = await this.usersService.findOne({ where: { email: email } }) as UserEntity;
         if (!user) return null;
 
         const isPasswordValid = await compare(password, user.password);
@@ -82,10 +71,8 @@ export class AuthService {
         return { success: true, data: { code: 200, message: 'Login successful', token, user } };
     }
 
-    // TODO: Logout method
     async logout(): Promise<ResponseDto> {
-        const token = null;
-        const user = null;
+
         return { success: true, data: { code: 200, message: 'Logout successful' } };
     }
 

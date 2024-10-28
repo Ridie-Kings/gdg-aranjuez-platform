@@ -1,9 +1,12 @@
-import { Body, Controller, Get, HttpStatus, Post, Query, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post, Query, Res, UseGuards } from '@nestjs/common';
 import { UserDto } from 'src/users/user.dto';
 import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { ResponseDto } from 'src/response.dto';
 import { LoginDto } from 'src/users/login.dto';
+import { Throttle, ThrottlerGuard } from '@nestjs/throttler';
+
+@UseGuards(ThrottlerGuard)
 @Controller('auth')
 export class AuthController {
 
@@ -28,10 +31,17 @@ export class AuthController {
     }
     @Post('login')
     async login(@Body() loginData: LoginDto, @Res() res: Response): Promise<ResponseDto> {
-        const { username, password } = loginData;
-        const response = await this.authService.login(username, password);
+        const { email, password } = loginData;
+        const response = await this.authService.login(email, password);
+        res.status(response.success ? HttpStatus.OK : HttpStatus.UNAUTHORIZED).send(response);
+        return response;
+    }
+    @Post('logout')
+    async logout(@Res() res: Response): Promise<ResponseDto> {
+        const response = await this.authService.logout();
         res.status(response.success ? HttpStatus.OK : HttpStatus.UNAUTHORIZED).send(response);
         return response;
     }
 
 }
+
