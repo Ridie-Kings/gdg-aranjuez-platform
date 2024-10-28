@@ -1,17 +1,35 @@
-import Image from "next/image"
-import Link from "next/link"
-import MenuAvatar from "@/components/elements/avatar/menuAvatar/menuAvatar"
-import { motion } from "framer-motion"
-import { useState } from "react"
+import Image from "next/image";
+import Link from "next/link";
+import MenuAvatar from "@/components/elements/avatar/menuAvatar/menuAvatar";
+import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 export default function Avatar({
     onClick,
     link,
 }: {
-    onClick?: () => void,
-    link?: string,
+    onClick?: () => void;
+    link?: string;
 }) {
     const [open, setOpen] = useState<boolean>(false);
+    const avatarRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (avatarRef.current && !avatarRef.current.contains(event.target as Node)) {
+                setOpen(false);
+            }
+        }
+
+        if (open) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [open]);
 
     return (
         <>
@@ -37,11 +55,13 @@ export default function Avatar({
                 </div>
             ) : (
                 <motion.div
+                    ref={avatarRef} 
                     initial={{ left: 0 }}
                     animate={{
-                        left: open ? ['0px', '-100px', '-100px'] : 0
+                        left: open ? ['0px', '-100px', '-100px'] : 0,
                     }}
-                    className="flex flex-col items-center relative cursor-pointer">
+                    className="flex flex-col items-center relative cursor-pointer"
+                >
                     <Image
                         src="/images/frankestein.png"
                         alt="Profile"
@@ -54,6 +74,6 @@ export default function Avatar({
                 </motion.div>
             )}
         </>
-
-    )
+    );
 }
+

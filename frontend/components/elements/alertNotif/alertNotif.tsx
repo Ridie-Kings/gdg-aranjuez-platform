@@ -18,10 +18,13 @@ const AlertNotif: React.FC<AlertNotifProps> = ({
 }) => {
 
   const colors = {
-    error: { background: "#160b0b", textColor: "#f4c7c7" },
-    success: { background: "#0c130d", textColor: "#cce8cd" },
-    warning: { background: "#191207", textColor: "#ffe2b7" },
-    info: { background: "#071318", textColor: "#b8e7fb" },
+    error: { background: "#160b0b", textColor: "#f4c7c7" }, //Cuando haces algo mal y salta el error
+    success: { background: "#0c130d", textColor: "#cce8cd" }, // Cuando haces algo bien y salta el success
+    warning: { background: "#191207", textColor: "#ffe2b7" }, // Cuando haces algo que no es lo correcto y salta el warning
+    info: { background: "#071318", textColor: "#b8e7fb" }, // Cuando se necesita informar algo
+    // Subida de nivel, exito al completar un nivel o conseguir un logro ??
+    // TODO: Revisar sistema de notify
+    // TODO: Integrar en register y login
   };
 
   const { background, textColor } = colors[type];

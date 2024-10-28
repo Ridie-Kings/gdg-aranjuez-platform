@@ -1,8 +1,9 @@
 import axios from "axios";
+import  server  from "@/server.config";
 
 export const login = async (email: string, pass: string, userAgent: string) => {
     try {
-        const response = await axios.post(`localhost:3300/auth/login/`, {
+        const response = await axios.post(`${server}/auth/login/`, {
             email: email,
             password: pass
         }, {
@@ -11,10 +12,7 @@ export const login = async (email: string, pass: string, userAgent: string) => {
                 'User-Agent': userAgent
             }
         });
-        return {
-            success: true,
-            data: response.data
-        };
+        return response.data
     } catch (error: any) {
         console.error("Login Request Error:", error);
         return {

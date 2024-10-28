@@ -2,17 +2,19 @@
 import { cookies, headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-import API from "./services"
+import API from "../services"
+import { loginSchema, registerSchema } from "./schemas";
 
 export type FormState = {
   success: boolean;
   data: {
     code?: number;
-    message:
+    message?:
     | {
       token: string | undefined;
     }
-    | string;
+    | string
+    client?: { [key: string]: string };
   };
 };
 
@@ -22,16 +24,27 @@ export async function register(
 ): Promise<FormState> {
   try {
     const user = {
-      email: formData.get("Email"),
-      username: formData.get("Username"),
-      password: formData.get("Password"),
+      email: formData.get("email"),
+      username: formData.get("username"),
+      password: formData.get("password"),
       repeatPassword: formData.get("Repeat password"),
     };
+
+    const result = registerSchema.safeParse(user);
+
+    const formattedErrors: { [key: string]: string } = {}
+    result.error?.errors.forEach((error) => {
+      formattedErrors[error.path[0]] = error.message;
+    })
+
+    if (!result.success)
+      return { success: false, data: { client: formattedErrors } }
+
     const resolvedHeaders = await headers();
     const userAgent = resolvedHeaders.get("user-agent");
 
     if (!user.username || !user.email || !user.password)
-      return { success: false, data: { message: "case pas ecrit" } };
+      return { success: false, data: { message: "Nada escrito" } };
 
     const response = await API.auth.register(
       user.username.toString(),
@@ -41,11 +54,11 @@ export async function register(
     );
 
     if (response.success === true) {
-      const token = response.data.message.token;
+      const token = response.data.token;
       const expires = new Date(Date.now() + 7 * 60 * 60 * 24 * 1000);
-      const res = NextResponse.json(response);
-      res.cookies.set("session", token, { expires, httpOnly: true });
+      // redirect to login
     }
+
     return response;
   } catch (error) {
     return { success: false, data: { message: error as string } };
@@ -58,9 +71,14 @@ export async function login(
 ): Promise<FormState> {
   try {
     const user = {
-      email: formData.get("Email"),
-      password: formData.get("Password"),
+      email: formData.get("email"),
+      password: formData.get("password"),
     };
+    const result = loginSchema.safeParse(user);
+
+    if (!result.success) {
+      return { success: false, data: { message: result.error.message } }
+    }
 
     if (!user.email || !user.password)
       return { success: false, data: { message: "case pas ecrit" } };
@@ -75,20 +93,15 @@ export async function login(
     );
 
     if (response.success === true) {
-      const token = response.data.message.token;
+      const token = response.data.token;
       const expires = new Date(Date.now() + 7 * 60 * 60 * 24 * 1000);
-
-      const res = NextResponse.json(response);
-      res.cookies.set("session", token, { expires, httpOnly: true });
+      const cookiesStored = await cookies();
+      cookiesStored.set("session", token, { expires, httpOnly: true });
     }
     return response;
   } catch (error) {
     return { success: false, data: { message: error as string } };
   }
-}
-
-export async function logout() {
-  cookies().delete("session");
 }
 
 export type sessionType =
@@ -100,7 +113,8 @@ export type sessionType =
   | undefined;
 
 export async function getSession() {
-  const session = cookies().get("session")?.value;
+  const existedCookies = await cookies();
+  const session = existedCookies.get("session")?.value;
 
   if (!session) return;
 
@@ -117,8 +131,8 @@ export async function getSession() {
 
 export async function updateSession(request: NextRequest) {
   if (request.url.includes("user/")) {
-    let parse = request.url.split("/");
-    let id = parse[parse.length - 1];
+    const parse = request.url.split("/");
+    const id = parse[parse.length - 1];
 
     const session = await getSession();
     try {
@@ -130,14 +144,15 @@ export async function updateSession(request: NextRequest) {
     }
   }
 
-  if (request.url.includes("/logout")) {
-    try {
-      await logout();
-      return NextResponse.redirect(new URL("/login", request.url));
-    } catch (error) {
-      console.error("Erreur lors de la déconnexion:", error);
-    }
-  }
+  // if (request.url.includes("/logout")) {
+  //   try {
+  //     await logout();
+  //     return NextResponse.redirect(new URL("/login", request.url));
+  //   } catch (error) {
+  //     console.error("Erreur lors de la déconnexion:", error);
+  //   }
+  // }
+
   // try {
   //     if (!request.cookies.get('session')?.value) {
   //         switch (request.nextUrl.pathname) {

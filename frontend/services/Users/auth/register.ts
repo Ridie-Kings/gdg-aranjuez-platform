@@ -13,10 +13,7 @@ export const register = async (username: string, email: string, pass: string, us
                 'User-Agent': userAgent
             }
         });
-        return {
-            success: true,
-            data: response.data
-        };
+        return response.data
     } catch (error: any) {
         console.error("Register Request Error:", error);
         return {

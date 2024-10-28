@@ -5,9 +5,8 @@ import Link from "next/link";
 import Ghost from "@/components/icons/ghost";
 import Eye from "@/components/icons/eye";
 import CloseEye from "@/components/icons/closeEye";
-import { useState } from "react";
-import { FormState, login } from "@/lib";
-import { useFormState } from "react-dom";
+import { useActionState, useEffect, useState } from "react";
+import { FormState, login } from "@/lib/lib";
 import FirstConnection from "@/components/auth/login/firstConnection/firstConnection";
 
 export default function Login() {
@@ -15,15 +14,18 @@ export default function Login() {
     const [see, setSee] = useState<boolean>(false)
     const [first, setFirst] = useState<boolean>(false)
 
-    const [formState, formAction] = useFormState(login, {
+    const [formState, formAction] = useActionState(login, {
         success: false,
         data: { token: "", message: "" },
     } as FormState);
 
-
-    const handleSumbit = () => {
-        setFirst(true);
-    }
+    useEffect(() => {
+        if (formState.success) {
+            setFirst(true);
+        } else {
+            console.log("not success to login");
+        }
+    }, [formState])
 
     return (
         <>
@@ -34,11 +36,11 @@ export default function Login() {
                     <Skull size="90px" className="animate-bounce" />
                     <div className="flex flex-col items-center justify-center">
                         <p className="text-4xl text-white font-display">CODECRYPT</p>
-                        <p className="text-sm text-customGray">Enter if you dare...</p>
+                        <p className="text-sm text-customGray">Regístrate si te atreves...</p>
                     </div>
                     <form
                         action={formAction}
-                        className="flex flex-col w-1/3 border border-customOrange p-8 gap-5 rounded-md text-customGray"
+                        className="flex flex-col w-1/2 lg:w-1/3 border border-customOrange p-8 gap-5 rounded-md text-customGray"
                     >
                         <div className="flex relative items-center w-full">
                             <Ghost size="25px" className="absolute m-2" />
@@ -46,7 +48,7 @@ export default function Login() {
                                 type="input"
                                 name="email"
                                 className="bg-transparent border border-customOrange rounded p-2 pl-10 w-full"
-                                placeholder="Email"
+                                placeholder="Correo electrónico"
                             />
                         </div>
                         <div className="flex relative items-center w-full">
@@ -55,8 +57,9 @@ export default function Login() {
                                 <CloseEye size="25px" className="absolute m-2 cursor-pointer" onClick={() => setSee(!see)} />}
                             <input
                                 type={see ? "input" : "password"}
+                                name="password"
                                 className="bg-transparent border border-customOrange rounded p-2 pl-10 w-full"
-                                placeholder="Password"
+                                placeholder="Contraseña"
                             />
                         </div>
                         <div className="flex place-content-between">
@@ -64,18 +67,16 @@ export default function Login() {
                                 <input
                                     type="checkbox"
                                 />
-                                <p className="text-customGray text-sm">Remember me</p>
+                                <p className="text-customGray text-sm">Recuérdame</p>
                             </div>
-                            <Link href={"#"} className="text-customOrange text-sm">Forgot password?</Link>
                         </div>
-                        <Buttons text="Enter the Crypt" height="35px" onClick={() => handleSumbit()} />
+                        <Buttons color="black" text="Entra a la cripta" height="35px" />
                         <p className="text-sm text-center text-customGray">
-                            Not a member? <Link href={"/register"} className="text-customOrange">Join the Dark Side</Link>
+                            ¿No eres miembro? <Link href={"/register"} className="text-customOrange">Adéntrate en los secretos Cripta</Link>
                         </p>
                     </form>
                 </div >
-            )
-            }
+            )}
         </>
     )
 }

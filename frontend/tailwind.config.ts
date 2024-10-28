@@ -30,29 +30,29 @@ const config: Config = {
       },
       keyframes: {
         flicker: {
-          '0%, 100%': { opacity: '1' },    
-          '50%': { opacity: '0.4' },       
-          '30%': { opacity: '0.8' },       
-          '70%': { opacity: '0.9' },       
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.4' },
+          '30%': { opacity: '0.8' },
+          '70%': { opacity: '0.9' },
         },
       },
       animation: {
-        flicker: 'flicker 3.5s ease-in-out 4', 
+        flicker: 'flicker 3.5s ease-in-out 4',
       },
       borderFlicker: {
         flicker: 'flicker 0.5s ease-in-out 4',  // Clase personalizada solo para el borde
       }
     },
   },
-  plugins: [ 
+  plugins: [
     function (api: PluginAPI) {
-    const { addUtilities } = api;
-    addUtilities({
-      '.text-shadow-glow': {
-        textShadow: '0 0 10px #FF7518, 0 0 20px #FF7518, 0 0 30px #FF7518',
-      },
-    });
-  },],
+      const { addUtilities } = api;
+      addUtilities({
+        '.text-shadow-glow': {
+          textShadow: '0 0 10px #FF7518, 0 0 20px #FF7518, 0 0 30px #FF7518',
+        },
+      });
+    },],
 };
 
 export default config;

@@ -16,7 +16,7 @@ export default function buttons({
 }) {
 
     return (
-        <button type="submit" onClick={onClick} style={{ color, width, height, fontFamily: font ? "Creepster" : "" }} className="rounded w-full h-full bg-customOrange">
+        <button onClick={onClick} style={{ color, width, height, fontFamily: font ? "Creepster" : "" }} className="rounded w-full h-full bg-customOrange">
             {text}
         </button>
     );

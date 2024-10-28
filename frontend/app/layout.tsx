@@ -3,6 +3,7 @@ import "./globals.scss";
 
 import NavBar from "../components/layout/navBar/navBar";
 import ImageBg from "@/components/elements/Imagebg/Imagebg"
+import { AuthProvider } from "@/context/AuthContext";
 
 
 export const metadata: Metadata = {
@@ -17,12 +18,14 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
-      <body className="bg-background">
-        <NavBar />
-        {children}
-        <ImageBg />
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body className="bg-background">
+          <NavBar />
+            {children}
+          <ImageBg />
+        </body>
+      </html>
+    </AuthProvider>
   );
 }
