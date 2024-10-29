@@ -1,7 +1,6 @@
 import PersonalInfo from "@/components/settings/personalInfo/personalInfo";
 import Social from "@/components/settings/social/social";
 import SuppAccount from "@/components/settings/suppAccount/suppAccount";
-import Ghost from "../icons/ghost";
 
 export default function Settings() {
     return (

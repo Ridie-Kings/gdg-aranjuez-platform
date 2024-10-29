@@ -1,4 +1,3 @@
-import Buttons from "@/components/elements/buttons/buttons";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,8 +14,8 @@ const careerOptions = [
 ];
 
 export default function FirstConnection() {
-  const [skillLevel, setSkillLevel] = useState("");
-  const [careerStage, setCareerStage] = useState("");
+  const [, setSkillLevel] = useState("");
+  const [, setCareerStage] = useState("");
   const [baseLanguage, setBaseLanguage] = useState("JavaScript");
   const [selectedCareer, setSelectedCareer] = useState<number | null>(null); // Estado para la opción de carrera seleccionada
 

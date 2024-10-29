@@ -3,7 +3,6 @@ import React from 'react';
 
 const CirclePoints = ({ numPoints, numSteps = 5 }: { numPoints: number, numSteps: number }) => {
     const radius = 100;
-    const stepSize = radius / numSteps;
     const circle = 50;
 
     return (

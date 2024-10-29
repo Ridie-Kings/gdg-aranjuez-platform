@@ -28,11 +28,11 @@ import { UserBadgeModule } from './userBadge/userBadge.module';
         }]),
         TypeOrmModule.forRoot({
             type: 'postgres',
-            host: 'localhost',
-            port: 5432,
-            username: 'user',
-            password: 'user',
-            database: 'hw42',
+            host: process.env.DB_HOST || 'localhost',
+            port: +process.env.DB_PORT || 5432,
+            username: process.env.DB_USER || 'user',
+            password: process.env.DB_PASSWORD || 'user',
+            database: process.env.DB_NAME || 'hw42',
             entities: [
                 UserEntity,
                 UserLevelEntity,
