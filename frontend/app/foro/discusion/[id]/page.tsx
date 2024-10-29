@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Avatar from '@/components/elements/avatar/avatar';
 import { MessageCircle, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 interface Comment {
     id: string;
@@ -15,12 +15,12 @@ interface Comment {
 
 
 export default function DiscusionPage() {
-    const router = useRouter();
-    const { id } = router.query;
+    // const router = useRouter();
+    // const { id } = router.query;
 
     const [newReply, setNewReply] = useState('');
     const [discussion, setDiscussion] = useState<Comment>({
-        id: id as string,
+        id: "1",
         user: { name: "Allan_Coc", avatar: "" },
         content: "Para entender la recursividad, primero tengo que entender la recursividad.",
         timeAgo: "2h",

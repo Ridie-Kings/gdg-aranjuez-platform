@@ -1,7 +1,7 @@
 'use client';
 import { FormState, getSession, sessionType, login as apiLogin, register as apiRegister } from "@/lib/lib";
 import React, { useEffect, useState, createContext, useContext } from 'react';
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 interface AuthContextType {
     user: sessionType | null;
@@ -18,7 +18,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
     const [user, setUser] = useState<sessionType | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const router = useRouter();
+    // const router = useRouter();
 
     useEffect(() => {
       (async () => {
@@ -42,7 +42,8 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
             const session = await getSession()
             setIsAuthenticated(true)
             setUser(session)
-            router.push('/home')
+            // router.push('/home')
+            console.log(4);
         }
         return response
     }
@@ -53,7 +54,8 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
             const session = await getSession()
             setIsAuthenticated(true)
             setUser(session)
-            router.push('/home')
+            // router.push('/home')
+            console.log(4);
         }
         return response
     }
@@ -62,7 +64,8 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
         setIsAuthenticated(false)
         setUser(null)
-        router.push('/login')
+        // router.push('/login')
+        console.log(4);
     }
 
 

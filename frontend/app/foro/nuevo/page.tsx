@@ -1,20 +1,20 @@
 "use client";
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import Avatar from '@/components/elements/avatar/avatar';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
 export default function NewDiscussionPage() {
-    const router = useRouter();
+    // const router = useRouter();
     const [topic, setTopic] = useState('');
     const [content, setContent] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!topic.trim() || !content.trim()) return;
-        
-        router.push('/foro');
+        console.log("foro");
+        // router.push('/foro');
     };
 
     return (

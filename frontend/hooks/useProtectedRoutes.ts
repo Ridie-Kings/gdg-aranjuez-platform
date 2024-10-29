@@ -1,5 +1,5 @@
 import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 interface ProtectedRouteReturn {
@@ -8,7 +8,7 @@ interface ProtectedRouteReturn {
 
 export function useProtectedRoute(isProtected: boolean = true): ProtectedRouteReturn {
     const { isAuthenticated, isLoading } = useAuth()
-    const router = useRouter()
+    // const router = useRouter()
 
     useEffect(() => {
         if (!isLoading) {
@@ -20,7 +20,7 @@ export function useProtectedRoute(isProtected: boolean = true): ProtectedRouteRe
                 // router.replace('/home')
             }
         }
-    }, [isAuthenticated, router, isLoading, isProtected])
+    }, [isAuthenticated, isLoading, isProtected])
 
     return { isLoading }
 }
