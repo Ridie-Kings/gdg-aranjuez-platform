@@ -42,25 +42,6 @@ codecrypt/
 - **Documentación API**: `http://localhost:3300/api`
 - **Swagger UI**: `http://localhost:3300/api-docs`
 
-
-## 🔄 Flujo de Trabajo de Desarrollo
-
-1. **Branches**:
-   - `main`: Producción
-   - `develop`: Desarrollo principal
-   - `feature/*`: Nuevas características
-   - `bugfix/*`: Correcciones
-   - `hotfix/*`: Correcciones urgentes en producción
-
-2. **Commits**:
-   ```
-   feat: añadir sistema de logros
-   fix: corregir autenticación
-   docs: actualizar README
-   style: formatear código
-   refactor: reorganizar estructura de módulos
-   ```
-
 ## 🤝 Contribución
 
 1. Fork el proyecto
