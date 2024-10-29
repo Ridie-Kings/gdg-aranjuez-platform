@@ -1,5 +1,4 @@
 "use client";
-import Ghost from "@/components/icons/ghost";
 import Divider from "@/components/elements/divider/divider";
 import { useState } from "react";
 import Nivel from "./nivel/nivel";
