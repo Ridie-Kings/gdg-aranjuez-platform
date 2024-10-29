@@ -13,9 +13,11 @@ export function useProtectedRoute(isProtected: boolean = true): ProtectedRouteRe
     useEffect(() => {
         if (!isLoading) {
             if (isProtected && !isAuthenticated) {
-                router.replace('/login')
+                console.log(3);
+                // router.replace('/login')
             } else if (!isProtected && isAuthenticated) {
-                router.replace('/home')
+                console.log(3);
+                // router.replace('/home')
             }
         }
     }, [isAuthenticated, router, isLoading, isProtected])

@@ -1,6 +1,6 @@
 "use client"
 import Skull from "@/components/icons/skull";
-import Buttons from "@/components/elements/buttons/buttons";
+// import Buttons from "@/components/elements/buttons/buttons";
 import Link from "next/link";
 import { useActionState, useEffect, useState } from "react";
 import Ghost from "@/components/icons/ghost";
@@ -107,7 +107,8 @@ export default function Register() {
                     </div>
                     <p className="text-red-500 ">{error?.repeatPassword}</p>
                 </div>
-                <Buttons color="black" text="Registrar" height="35px" />
+                {/* <Link href="/home"><Buttons color="black" text="Registrar" height="35px" /></Link> */}
+                <Link href="/home" className="bg-customOrange text-black flex justify-center items-center p-2 rounded">Entrar</Link>
                 <p className="text-sm text-center text-customGray">
                     ¿Ya eres miembro? <Link href={"/login"} className="text-customOrange">Entra en la cripta</Link>
                 </p>

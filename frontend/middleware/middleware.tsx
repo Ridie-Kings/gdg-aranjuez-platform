@@ -11,14 +11,16 @@ export async function middleware(request: NextRequest) {
 
     if (session?.token) {
         if (publicRoutes.includes(pathname)) {
-            return NextResponse.redirect(new URL("/home", request.url));
+            // return NextResponse.redirect(new URL("/home", request.url));
+            console.log(2);
         }
         return NextResponse.next();
     }
 
     if (!session?.token) {
         if (protectedRoutes.includes(pathname)) {
-            return NextResponse.redirect(new URL("/login", request.url));
+            // return NextResponse.redirect(new URL("/home", request.url));
+            console.log(2);
         }
         return NextResponse.next();
     }

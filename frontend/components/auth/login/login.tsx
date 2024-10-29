@@ -1,6 +1,6 @@
 "use client"
 import Skull from "@/components/icons/skull";
-import Buttons from "@/components/elements/buttons/buttons";
+// import Buttons from "@/components/elements/buttons/buttons";
 import Link from "next/link";
 import Ghost from "@/components/icons/ghost";
 import Eye from "@/components/icons/eye";
@@ -70,7 +70,8 @@ export default function Login() {
                                 <p className="text-customGray text-sm">Recuérdame</p>
                             </div>
                         </div>
-                        <Buttons color="black" text="Entra a la cripta" height="35px" />
+                        {/* <Buttons color="black" text="Entra a la cripta" height="35px" /> */}
+                        <Link href="/home" className="bg-customOrange text-black flex justify-center items-center p-2 rounded">Entrar</Link>
                         <p className="text-sm text-center text-customGray">
                             ¿No eres miembro? <Link href={"/register"} className="text-customOrange">Únete a la cripta</Link>
                         </p>
