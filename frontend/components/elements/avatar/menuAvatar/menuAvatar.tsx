@@ -1,102 +1,60 @@
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { BellIcon, UserIcon, Settings2, LogOut } from "lucide-react";
 
-export default function menuAvatar({
+export default function MenuAvatar({
     open,
 }: {
-    open: boolean
+    open: boolean;
 }) {
     return (
-        //TODO: Hacerlo responsive con el texto de dentro
         <motion.div
-            initial={{ left: 0 }}
-            animate={{
-                left: open ? ['45px', '45px', '45px'] : 0
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ 
+                opacity: open ? 1 : 0,
+                scale: open ? 1 : 0.95,
             }}
-            transition={{ ease: "easeIn", duration: 0.1 }}
-            className="absolute -top-1 left-0 flex flex-col justify-center items-center transition-all duration-[450ms] ease-in-out w-[50px]"
+            transition={{ duration: 0.1 }}
+            className={`absolute right-0 top-16 w-64 bg-gray-900/95 backdrop-blur-sm border border-orange-800/50 rounded-xl shadow-xl z-50 ${!open && 'pointer-events-none'}`}
         >
-            <motion.article
-                initial={{ opacity: 0, width: 0, height: '65px' }}
-                animate={{
-                    opacity: open ? [0, 100] : 0,
-                    width: open ? [155, 155] : 0,
-                    height: open ? ['65px', '370px'] : '65px',
-                }}
-                transition={{ ease: "easeIn", duration: 0.1 }}
-                className="overflow-hidden bg-customOrange border border-solid flex flex-col border-gray-700 w-full ease-in-out duration-500 left-0 rounded-2xl shadow-lg shadow-black/15 bg-gray pt-12"
-            >
-                <label
-                    htmlFor="profile"
-                    className="has-[:checked]:shadow-lg cursor-pointer relative w-full h-16 p-4 ease-in-out duration-300 border-solid border-black/10 has-[:checked]:border group flex flex-row gap-3 items-center text-black rounded-xl"
-                >
-                    <input className="hidden peer/expand" type="radio" name="path" id="profile" />
-                    <svg
-                        className="peer-hover/expand:scale-125  peer-hover/expand:fill-orange peer-checked/expand:text-customOrange peer-checked/expand:fill-orange text-2xl peer-checked/expand:scale-125 ease-in-out duration-300"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"
-                        ></path>
-                    </svg>
-                    <p className="text-black font-bold  ease-in-out duration-300">Perfil</p>
-                </label>
-                <label
-                    htmlFor="messages"
-                    className="has-[:checked]:shadow-lg cursor-pointer relative w-full h-16 p-4 ease-in-out duration-300 border-solid border-black/10 has-[:checked]:border group flex flex-row gap-3 items-center text-black rounded-xl"
-                >
-                    <input
-                        className="hidden peer/expand"
-                        type="radio"
-                        name="path"
-                        id="messages"
+            <div className="p-4 border-b border-orange-800/30">
+                <div className="flex items-center gap-3">
+                    <img
+                        src="/images/frankestein.png"
+                        alt="Profile"
+                        className="w-10 h-10 rounded-full border border-orange-500/50"
                     />
-                    <svg
-                        className="peer-hover/expand:scale-125  peer-hover/expand:fill-orange peer-checked/expand:text-customOrange peer-checked/expand:fill-orange text-2xl peer-checked/expand:scale-125 ease-in-out duration-300"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            d="M5 18v3.766l1.515-.909L11.277 18H16c1.103 0 2-.897 2-2V8c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h1zM4 8h12v8h-5.277L7 18.234V16H4V8z"
-                        ></path>
-                        <path
-                            d="M20 2H8c-1.103 0-2 .897-2 2h12c1.103 0 2 .897 2 2v8c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2z"
-                        ></path>
-                    </svg>
-                    <p className="text-black font-bold  ease-in-out duration-300">Notificaciones</p>
-                </label>
-                <label
-                    htmlFor="settings"
-                    className="has-[:checked]:shadow-lg cursor-pointer cursor-pointer relative w-full h-16 p-4 ease-in-out duration-300 border-solid border-black/10 has-[:checked]:border group flex flex-row gap-3 items-center text-black rounded-xl"
-                >
-                    <input
-                        className="hidden peer/expand"
-                        type="radio"
-                        name="path"
-                        id="settings"
-                    />
-                    <svg
-                        className="peer-hover/expand:scale-125  peer-hover/expand:fill-orange peer-checked/expand:text-customOrange peer-checked/expand:fill-orange text-3xl peer-checked/expand:scale-125 ease-in-out duration-300"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            d="M12 16c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.084 0 2 .916 2 2s-.916 2-2 2-2-.916-2-2 .916-2 2-2z"
-                        ></path>
-                        <path
-                            d="m2.845 16.136 1 1.73c.531.917 1.809 1.261 2.73.73l.529-.306A8.1 8.1 0 0 0 9 19.402V20c0 1.103.897 2 2 2h2c1.103 0 2-.897 2-2v-.598a8.132 8.132 0 0 0 1.896-1.111l.529.306c.923.53 2.198.188 2.731-.731l.999-1.729a2.001 2.001 0 0 0-.731-2.732l-.505-.292a7.718 7.718 0 0 0 0-2.224l.505-.292a2.002 2.002 0 0 0 .731-2.732l-.999-1.729c-.531-.92-1.808-1.265-2.731-.732l-.529.306A8.1 8.1 0 0 0 15 4.598V4c0-1.103-.897-2-2-2h-2c-1.103 0-2 .897-2 2v.598a8.132 8.132 0 0 0-1.896 1.111l-.529-.306c-.924-.531-2.2-.187-2.731.732l-.999 1.729a2.001 2.001 0 0 0 .731 2.732l.505.292a7.683 7.683 0 0 0 0 2.223l-.505.292a2.003 2.003 0 0 0-.731 2.733zm3.326-2.758A5.703 5.703 0 0 1 6 12c0-.462.058-.926.17-1.378a.999.999 0 0 0-.47-1.108l-1.123-.65.998-1.729 1.145.662a.997.997 0 0 0 1.188-.142 6.071 6.071 0 0 1 2.384-1.399A1 1 0 0 0 11 5.3V4h2v1.3a1 1 0 0 0 .708.956 6.083 6.083 0 0 1 2.384 1.399.999.999 0 0 0 1.188.142l1.144-.661 1 1.729-1.124.649a1 1 0 0 0-.47 1.108c.112.452.17.916.17 1.378 0 .461-.058.925-.171 1.378a1 1 0 0 0 .471 1.108l1.123.649-.998 1.729-1.145-.661a.996.996 0 0 0-1.188.142 6.071 6.071 0 0 1-2.384 1.399A1 1 0 0 0 13 18.7l.002 1.3H11v-1.3a1 1 0 0 0-.708-.956 6.083 6.083 0 0 1-2.384-1.399.992.992 0 0 0-1.188-.141l-1.144.662-1-1.729 1.124-.651a1 1 0 0 0 .471-1.108z"
-                        ></path>
-                    </svg>
-                    <p className="text-black font-bold  ease-in-out duration-300">Ajustes</p>
-                </label>
-            </motion.article>
-        </motion.div>
+                    <div>
+                        <h3 className="text-white font-medium">Allan Mersil</h3>
+                        <p className="text-gray-400 text-sm">@AllanTyson</p>
+                    </div>
+                </div>
+            </div>
 
-    )
+            <div className="p-2">
+                <Link href="/profile" className="flex items-center gap-3 px-3 py-2 text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 rounded-lg transition-colors duration-200">
+                    <UserIcon size={18} />
+                    <span>Profile</span>
+                </Link>
+                <Link href="/notificaciones" className="flex items-center gap-3 px-3 py-2 text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 rounded-lg transition-colors duration-200">
+                    <div className="relative">
+                        <BellIcon size={18} />
+                        <span className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 text-black text-xs flex items-center justify-center rounded-full">3</span>
+                    </div>
+                    <span>Notifications</span>
+                </Link>
+                <Link href="/settings" className="flex items-center gap-3 px-3 py-2 text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 rounded-lg transition-colors duration-200">
+                    <Settings2 size={18} />
+                    <span>Settings</span>
+                </Link>
+            </div>
+
+            <div className="p-2 border-t border-orange-800/30">
+                <button className="w-full flex items-center gap-3 px-3 py-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors duration-200">
+                    <LogOut size={18} />
+                    <span>Sign out</span>
+                </button>
+            </div>
+        </motion.div>
+    );
 }

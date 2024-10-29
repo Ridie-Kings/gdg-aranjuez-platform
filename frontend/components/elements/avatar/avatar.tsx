@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import MenuAvatar from "@/components/elements/avatar/menuAvatar/menuAvatar";
-import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
 export default function Avatar({
@@ -40,7 +39,7 @@ export default function Avatar({
                         alt="Profile"
                         width={50}
                         height={50}
-                        className="rounded-full border border-customOrange"
+                        className="rounded-full border border-customOrange hover:border-orange-400 transition-colors duration-200"
                     />
                 </Link>
             ) : onClick ? (
@@ -50,30 +49,26 @@ export default function Avatar({
                         alt="Profile"
                         width={50}
                         height={50}
-                        className="rounded-full border border-customOrange"
+                        className="rounded-full border border-customOrange hover:border-orange-400 transition-colors duration-200"
                     />
                 </div>
             ) : (
-                <motion.div
-                    ref={avatarRef} 
-                    initial={{ left: 0 }}
-                    animate={{
-                        left: open ? ['0px', '-100px', '-100px'] : 0,
-                    }}
-                    className="flex flex-col items-center relative cursor-pointer"
-                >
-                    <Image
-                        src="/images/frankestein.png"
-                        alt="Profile"
-                        width={50}
-                        height={50}
-                        className="rounded-full border border-customOrange z-10"
+                <div ref={avatarRef} className="relative">
+                    <div 
                         onClick={() => setOpen(!open)}
-                    />
+                        className="cursor-pointer"
+                    >
+                        <Image
+                            src="/images/frankestein.png"
+                            alt="Profile"
+                            width={50}
+                            height={50}
+                            className="rounded-full border border-customOrange hover:border-orange-400 transition-colors duration-200"
+                        />
+                    </div>
                     <MenuAvatar open={open} />
-                </motion.div>
+                </div>
             )}
         </>
     );
 }
-
