@@ -17,7 +17,7 @@ const config: Config = {
         customGray: "#B0B0B0",
         customRed: "#8B0000",
         background: "#1e1e1e",
-        default: "#A7A3A3",
+        default: "#1e1e1e",
       },
       fontFamily: {
         display: ["Creepster", "system-ui"]

@@ -33,14 +33,14 @@ export default function Login() {
                 <FirstConnection />
             ) : (
                 <div className="w-full h-screen flex flex-col items-center justify-center gap-5">
-                    <Skull size="90px" className="animate-bounce" />
+                    <Skull color="#FF7518" size="90px" className="animate-bounce" />
                     <div className="flex flex-col items-center justify-center">
-                        <p className="text-4xl text-white font-display">CODECRYPT</p>
-                        <p className="text-sm text-customGray">Regístrate si te atreves...</p>
+                        <p className="text-4xl text-shadow-glow text-white font-display">CODECRYPT</p>
+                        <p className="text-sm pt-2 text-customGray">Adentrate si te atreves...</p>
                     </div>
                     <form
                         action={formAction}
-                        className="flex flex-col w-1/2 lg:w-1/3 border border-customOrange p-8 gap-5 rounded-md text-customGray"
+                        className="flex flex-col border border-customOrange p-8 gap-5 rounded-md text-customGray shadow-glow-orange"
                     >
                         <div className="flex relative items-center w-full">
                             <Ghost size="25px" className="absolute m-2" />
@@ -72,7 +72,7 @@ export default function Login() {
                         </div>
                         <Buttons color="black" text="Entra a la cripta" height="35px" />
                         <p className="text-sm text-center text-customGray">
-                            ¿No eres miembro? <Link href={"/register"} className="text-customOrange">Adéntrate en los secretos Cripta</Link>
+                            ¿No eres miembro? <Link href={"/register"} className="text-customOrange">Únete a la cripta</Link>
                         </p>
                     </form>
                 </div >

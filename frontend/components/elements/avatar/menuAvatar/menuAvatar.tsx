@@ -6,6 +6,7 @@ export default function menuAvatar({
     open: boolean
 }) {
     return (
+        //TODO: Hacerlo responsive con el texto de dentro
         <motion.div
             initial={{ left: 0 }}
             animate={{
@@ -24,29 +25,6 @@ export default function menuAvatar({
                 transition={{ ease: "easeIn", duration: 0.1 }}
                 className="overflow-hidden bg-customOrange border border-solid flex flex-col border-gray-700 w-full ease-in-out duration-500 left-0 rounded-2xl shadow-lg shadow-black/15 bg-gray pt-12"
             >
-                <label
-                    htmlFor="dashboard"
-                    className="has-[:checked]:shadow-lg cursor-pointer relative w-full h-16 p-4 ease-in-out duration-300 border-solid border-black/10 has-[:checked]:border group flex flex-row gap-3 items-center  text-black rounded-xl"
-                >
-                    <input
-                        className="hidden peer/expand"
-                        type="radio"
-                        name="path"
-                        id="dashboard"
-                    />
-                    <svg
-                        className="peer-hover/expand:scale-125  peer-hover/expand:fill-orange peer-checked/expand:text-customOrange peer-checked/expand:fill-orange text-2xl peer-checked/expand:scale-125 ease-in-out duration-300"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            d="M4 13h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1zm-1 7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v4zm10 0a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v7zm1-10h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1z"
-                        ></path>
-                    </svg>
-                    <p className="text-black font-bold  ease-in-out duration-300">Panel de control</p>
-                </label>
                 <label
                     htmlFor="profile"
                     className="has-[:checked]:shadow-lg cursor-pointer relative w-full h-16 p-4 ease-in-out duration-300 border-solid border-black/10 has-[:checked]:border group flex flex-row gap-3 items-center text-black rounded-xl"
@@ -89,26 +67,7 @@ export default function menuAvatar({
                             d="M20 2H8c-1.103 0-2 .897-2 2h12c1.103 0 2 .897 2 2v8c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2z"
                         ></path>
                     </svg>
-                    <p className="text-black font-bold  ease-in-out duration-300">Mensajes</p>
-                </label>
-                <label
-                    htmlFor="help"
-                    className="has-[:checked]:shadow-lg cursor-pointer relative w-full h-16 p-4 ease-in-out duration-300 border-solid border-black/10 has-[:checked]:border group flex flex-row gap-3 items-center text-black rounded-xl"
-                >
-                    <input className="hidden peer/expand" type="radio" name="path" id="help" />
-                    <svg
-                        className="peer-hover/expand:scale-125  peer-hover/expand:fill-orange peer-checked/expand:text-customOrange peer-checked/expand:fill-orange text-2xl peer-checked/expand:scale-125 ease-in-out duration-300"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            d="M11.953 2C6.465 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.493 2 11.953 2zM12 20c-4.411 0-8-3.589-8-8s3.567-8 7.953-8C16.391 4 20 7.589 20 12s-3.589 8-8 8z"
-                        ></path>
-                        <path d="M11 7h2v7h-2zm0 8h2v2h-2z"></path>
-                    </svg>
-                    <p className="text-black font-bold  ease-in-out duration-300">Ayuda</p>
+                    <p className="text-black font-bold  ease-in-out duration-300">Notificaciones</p>
                 </label>
                 <label
                     htmlFor="settings"

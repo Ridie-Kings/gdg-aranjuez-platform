@@ -10,7 +10,6 @@ import CloseEye from "@/components/icons/closeEye";
 import { FormState } from "@/lib/lib";
 import { register } from "@/lib/lib";
 import { useRouter } from "next/navigation";
-import { ZodIssue } from "zod";
 
 export default function Register() {
 
@@ -42,14 +41,14 @@ export default function Register() {
 
     return (
         <div className="w-full h-screen flex flex-col items-center justify-center gap-5">
-            <Skull size="90px" className="animate-bounce" />
+            <Skull color="#FF7518" size="90px" className="animate-bounce" />
             <div className="flex flex-col items-center justify-center">
-                <p className="text-4xl text-white font-display">CODECRYPT</p>
-                <p className="text-sm text-customGray">Regístrate si te atreves...</p>
+                <p className="text-4xl text-white text-shadow-glow font-display">CODECRYPT</p>
+                <p className="text-sm pt-2 text-customGray">Regístrate si te atreves...</p>
             </div>
-            <form action={formAction} className="flex flex-col w-1/2 lg:w-1/3 border border-customOrange p-8 gap-5 rounded-md text-customGray">
+            <form action={formAction} className="flex flex-col border border-customOrange p-8 gap-5 rounded-md text-customGray shadow-glow-orange">
                 <div className="flex flex-col relative items-center w-full">
-                    <div>
+                    <div className="w-full">
                         <Ghost size="25px" className="absolute m-2" />
                         <input
                             type="input"
@@ -108,9 +107,9 @@ export default function Register() {
                     </div>
                     <p className="text-red-500 ">{error?.repeatPassword}</p>
                 </div>
-                <Buttons color="black" text="Registar" height="35px" />
+                <Buttons color="black" text="Registrar" height="35px" />
                 <p className="text-sm text-center text-customGray">
-                    ¿Ya eres miembro? <Link href={"/login"} className="text-customOrange">Ingresa a la cripta</Link>
+                    ¿Ya eres miembro? <Link href={"/login"} className="text-customOrange">Entra en la cripta</Link>
                 </p>
             </form>
         </div>
