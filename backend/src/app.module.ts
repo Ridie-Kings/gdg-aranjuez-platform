@@ -5,16 +5,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './users/user.entity';
 import { UserLevelEntity } from './users/userLevel.entity';
 import { BadgeEntity } from './badge/badge.entity';
-import { UserBadgeEntity } from './badge/userBadge.entity';
+import { UserBadgeEntity } from "./userBadge/userBadge.entity";
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { SubjectEntity } from './subjects/subject.entity';
 import { PostEntity } from './post/post.entity';
 import { CommentEntity } from './comments/comment.entity';
-import { ChallengeEntity } from './challenges/challenges.entity';
-import { UserChallengeEntity } from './challenges/userchallenge.entity';
+import { ChallengeEntity } from './challenge/challenge.entity';
+import { UserChallengeEntity } from './userchallenge/userchallenge.entity';
+import { BadgeModule } from './badge/badge.module';
+import { UserModule } from './users/user.module';
+import { ChallengeModule } from './challenge/challenge.module';
+import { UserBadgeModule } from './userBadge/userBadge.module';
 
 @Module({
     imports: [
@@ -46,7 +49,10 @@ import { UserChallengeEntity } from './challenges/userchallenge.entity';
             dropSchema: true
         }),
         AuthModule,
-        UsersModule
+        UserModule,
+        BadgeModule,
+        ChallengeModule,
+        UserBadgeModule
     ],
     controllers: [AppController],
     providers: [AppService, {

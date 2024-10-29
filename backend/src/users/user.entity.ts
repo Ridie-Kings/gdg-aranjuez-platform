@@ -1,10 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToMany, JoinTable } from "typeorm"
 import { UserLevelEntity } from './userLevel.entity';
-import { UserBadgeEntity } from "../badge/userBadge.entity";
+import { UserBadgeEntity } from "../userBadge/userBadge.entity";
 import { PostEntity } from "src/post/post.entity";
 import { CommentEntity } from "src/comments/comment.entity";
-import { ChallengeEntity } from "src/challenges/challenges.entity";
-import { UserChallengeEntity } from "src/challenges/userchallenge.entity";
+import { UserChallengeEntity } from "src/userchallenge/userchallenge.entity";
+import { SubjectEntity } from "src/subjects/subject.entity";
 
 @Entity()
 export class UserEntity {
@@ -30,7 +30,7 @@ export class UserEntity {
     avatar: string;
 
     @ManyToOne(() => UserLevelEntity, (level) => level.users)
-    @JoinColumn({ name: 'levelId' })
+    @JoinColumn()
     level: UserLevelEntity;
 
     @OneToMany(() => UserBadgeEntity, (userBadge) => userBadge.user, {
@@ -50,4 +50,8 @@ export class UserEntity {
 
     @OneToMany(() => UserChallengeEntity, (userchallenges) => userchallenges.user_entity)
     challenges: UserChallengeEntity[];
+
+    @ManyToMany(() => SubjectEntity, (subjectEntity) => subjectEntity.users)
+    @JoinTable()
+    projects: SubjectEntity[];
 }

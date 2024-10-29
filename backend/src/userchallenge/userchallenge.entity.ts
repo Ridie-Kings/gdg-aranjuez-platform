@@ -1,6 +1,6 @@
 import { UserEntity } from "src/users/user.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { ChallengeEntity } from "./challenges.entity";
+import { ChallengeEntity } from "../challenge/challenge.entity";
 
 @Entity()
 export class UserChallengeEntity {

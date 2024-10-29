@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { ResponseDto } from 'src/response.dto';
 import { UserDto } from 'src/users/user.dto';
 import { UserEntity } from 'src/users/user.entity';
-import { UsersService } from 'src/users/users.service';
+import { UserService } from 'src/users/user.service';
 import { compare, hash } from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 
@@ -16,7 +16,7 @@ interface TokenPayload {
 @Injectable()
 export class AuthService {
     constructor(
-        private usersService: UsersService,
+        private usersService: UserService,
         private configService: ConfigService
     ) { }
 
@@ -42,9 +42,9 @@ export class AuthService {
 
         try {
             const newPass = await hash(user.password, 10);
-            
+
             const newUser = await this.usersService.create({ ...user, password: newPass }) as UserEntity;
-            
+
             const token = this.generateToken(newUser);
 
             return { success: true, data: { code: 201, message: 'User created successfully', token } };
@@ -82,13 +82,13 @@ export class AuthService {
             username: username,
             email: email
         };
-    
+
         return jwt.sign(payload, this.jwtSecret, {
             expiresIn: '1d',
             algorithm: 'HS256'
         });
     }
-    
+
 
     verifyToken(token: string): TokenPayload {
         try {

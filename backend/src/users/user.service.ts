@@ -4,15 +4,12 @@ import { Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
 import { UserDto } from './user.dto';
 import { UserLevelEntity } from './userLevel.entity';
-import { UserBadgeEntity } from "../userBadge/userBadge.entity";
 
 @Injectable()
-export class UsersService {
+export class UserService {
     constructor(
         @InjectRepository(UserEntity)
         private usersRepository: Repository<UserEntity>,
-        @InjectRepository(UserBadgeEntity)
-        private userBadgeRepository: Repository<UserBadgeEntity>,
         // @InjectRepository(UserLevelEntity)
         // private userLevelRepository: Repository<UserLevelEntity>,
     ) { }
@@ -33,10 +30,6 @@ export class UsersService {
         return this.usersRepository.findOneBy({ username: username });
     }
 
-    findOneEntityByUsername(username: string): Promise<UserEntity | null> {
-        return this.usersRepository.findOneBy({ username: username });
-    }
-
     async create(user: UserDto): Promise<UserDto | null> {
         return await this.usersRepository.save(user);
     }
@@ -49,13 +42,6 @@ export class UsersService {
         const user = await this.usersRepository.findOneBy({ uuid });
         user.level = level;
         await this.usersRepository.save(user);
-    }
-
-    async getUserBadges(userId: UserEntity): Promise<UserBadgeEntity[]> {  //muestra los badges que tiene un usuario va para el lado del usuario
-        return this.userBadgeRepository.find({
-            where: { user: userId },
-            relations: ['users_badges'],
-        });
     }
 
 }

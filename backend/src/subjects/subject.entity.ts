@@ -1,5 +1,8 @@
 import { BadgeEntity } from "src/badge/badge.entity";
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, OneToOne, JoinColumn } from "typeorm"
+import { UserBadgeEntity } from "../userBadge/userBadge.entity";
+import { UserEntity } from "../users/user.entity";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, OneToOne, JoinColumn, ManyToMany } from "typeorm"
+import { ChallengeEntity } from "src/challenge/challenge.entity";
 
 @Entity()
 export class SubjectEntity {
@@ -27,5 +30,11 @@ export class SubjectEntity {
     @JoinColumn()
     badge: BadgeEntity;
 
-    //TODO relation with codingchallenge
+    @ManyToMany(() => UserEntity, user => user.projects)
+    users: UserEntity[];
+
+    @OneToMany(() => ChallengeEntity, (challengeEntity) => challengeEntity.subject)
+    @JoinColumn()
+    challenges: ChallengeEntity[];
+
 }

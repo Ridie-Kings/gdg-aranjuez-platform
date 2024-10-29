@@ -1,7 +1,8 @@
 import { UserEntity } from 'src/users/user.entity';
 import { text } from 'stream/consumers';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
-import { UserChallengeEntity } from './userchallenge.entity';
+import { UserChallengeEntity } from '../userchallenge/userchallenge.entity';
+import { SubjectEntity } from 'src/subjects/subject.entity';
 
 export enum Difficulty {
     EASY = 'EASY',
@@ -20,9 +21,6 @@ export class ChallengeEntity {
     @Column()
     description: string;
 
-    @Column()
-    difficulty: string;
-
     @Column({ nullable: true })
     version: number;
 
@@ -33,8 +31,12 @@ export class ChallengeEntity {
         type: 'enum',
         enum: Difficulty,
     })
-    diff: Difficulty;
+    difficulty: Difficulty;
 
     @OneToMany(() => UserChallengeEntity, (userchallenges) => userchallenges.challenge_entity)
     users: UserChallengeEntity[];
+
+    @ManyToOne(() => SubjectEntity, (subject) => subject.challenges)
+    subject: SubjectEntity;
+
 }

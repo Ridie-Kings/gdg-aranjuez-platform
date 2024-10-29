@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, OneToOne, JoinColumn } from "typeorm"
-import { UserBadgeEntity } from "src/badge/userBadge.entity";
+import { UserBadgeEntity } from "../userBadge/userBadge.entity";
 import { SubjectEntity } from "src/subjects/subject.entity";
 
 @Entity()
@@ -13,7 +13,7 @@ export class BadgeEntity {
     @Column()
     description: string;
 
-    @Column()
+    @Column({nullable: true})
     icon: string;
 
     @OneToMany(() => UserBadgeEntity, (userBadge) => userBadge.badge)
